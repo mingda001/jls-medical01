@@ -662,18 +662,16 @@ public class BaseinfoServiceImpl implements BaseinfoService {
 					+ " jma.asisstpay, jma.createtime, jma.updatetime, jma.member_id, jma.member_type, jma.implsts,"
 					+ " jma.tiketno, jma.medicaltype, jma.insuretype, jma.persontype, jma.on_no, jma.pay_line, "
 					+ " jma.hospitalpay, jma.diagnose, "
-					+ " mb.address,mb.sex,c.num,c.sumpay,(trunc(jma.endtime, 'dd') - trunc(jma.begintime, 'dd')) as indate "
+					+ " mb.address, mb.sex, "
+					+ " c.act_biz_inhospital_times as num, c.act_biz_money as sumpay, "
+					+ " (trunc(jma.endtime, 'dd') - trunc(jma.begintime, 'dd')) as indate "
 					+ " from jz_medicalafter jma,  member_baseinfo mb, "
-					+ " (select ma.member_id, ma.member_type, count(*) as num,sum(ma.asisstpay) as sumpay "
-					+ " from jz_medicalafter ma "
-					+ " where to_char(ma.endtime, 'yyyy') = '"
-					+ year 
-					+ "' "
-					+ " group by ma.member_id, ma.member_type) c "
+					+ " jz_act c "
 					+ " where jma.member_id = mb.member_id "
 					+ " and jma.member_type = mb.ds "
 					+ " and jma.member_id = c.member_id "
 					+ " and jma.member_type = c.member_type "
+					+ " and c.act_year = '"+year+ "' "
 					+ " and jma.ma_id = " + m.getMaId();
 			ExecutSQL executSQL = new ExecutSQL();
 			executSQL.setExecutsql(sql);
