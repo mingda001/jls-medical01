@@ -181,8 +181,15 @@
 				</s:param>
 			</s:url>
 	</s:elseif>
+	<s:url action="printapp" id="printapp">
+		<s:param name="medicalafterDTO.maId">
+			<s:property value="medicalafterDTO.maId" />
+		</s:param>
+	</s:url>
 				<s:a
-				href="%{print}" cssStyle="cursor:hand" target="_blank">打印</s:a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				href="%{print}" cssStyle="cursor:hand" target="_blank">打印票据</s:a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<s:a
+				href="%{printapp}" cssStyle="cursor:hand" target="_blank">打印申请审批表</s:a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<button onclick="window.close()">关闭</button></div>
 </body>
 </html>

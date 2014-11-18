@@ -105,5 +105,14 @@
 				<param name="reportParameters">map</param>
 			</result>
 		</action>
+		<action name="printapp" class="medicalafterAction"
+			method="printapp">
+			<result name="success" type="jasper">
+				<param name="location">/page/medicalafter/medicalafter_app.jasper</param>
+				<param name="dataSource">medicalafterDTO</param>
+				<param name="format">PDF</param>
+				<param name="reportParameters">map</param>
+			</result>
+		</action>
 	</package>
 </struts>

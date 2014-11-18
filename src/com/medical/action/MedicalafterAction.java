@@ -205,14 +205,8 @@ public class MedicalafterAction extends ActionSupport {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal = Calendar.getInstance();
 		String printtime = sdf.format(cal.getTime());
-/*Calendar cal_begin = Calendar.getInstance();
-		cal_begin.setTime(medicalafterDTO.getBegintime());
-		String begin = sdf.format(cal_begin.getTime());
-		Calendar cal_end = Calendar.getInstance();
-		cal_end.setTime(medicalafterDTO.getEndtime());
-		String end = sdf.format(cal_end.getTime());
-		map.put("BEGINTIME", begin);
-		map.put("ENDTIME", end);*/
+		map.put("BEGINTIME", medicalafterDTO.getBegintimeval());
+		map.put("ENDTIME", medicalafterDTO.getEndtimeval());
 		map.put("PRINTTIME", printtime);
 		map.put("INDATE", medicalafterDTO.getIndate().toString());
 		map.put("NUM", medicalafterDTO.getNum().toString());
@@ -283,13 +277,80 @@ public class MedicalafterAction extends ActionSupport {
 		map.put("TIKETNO", medicalafterDTO.getTiketno());
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal = Calendar.getInstance();
+		String printtime = sdf.format(cal.getTime());		
+		map.put("BEGINTIME", medicalafterDTO.getBegintimeval());
+		map.put("ENDTIME", medicalafterDTO.getEndtimeval());
+		map.put("PRINTTIME", printtime);
+		map.put("INDATE", medicalafterDTO.getIndate().toString());
+		map.put("NUM", medicalafterDTO.getNum().toString());
+		map.put("ASISSTPAY", medicalafterDTO.getAsisstpay().toString());
+		map.put("TOTALCOST", medicalafterDTO.getTotalcost().toString());
+		map.put("INSUREPAY", medicalafterDTO.getInsurepay().toString());
+		map.put("OUTPAY", medicalafterDTO.getOutpay().toString());
+		map.put("CAPAY", medicalafterDTO.getCapay().toString());
+		map.put("BUSINESSPAY", medicalafterDTO.getBusinesspay().toString());
+		map.put("PAYLINE", medicalafterDTO.getPayLine().toString());
+		map.put("HOSIPITALPAY", medicalafterDTO.getHospitalpay().toString());
+		map.put("SUMPAY", medicalafterDTO.getSumpay().toString());
+		return SUCCESS;
+	}
+	
+	public String printapp(){
+		medicalafterDTO = this.baseinfoService.findMemberInfoPrint(medicalafterDTO);
+		map = new HashMap<String, String>();
+		String medicaltype="";
+		String sickencontent = "";
+		if("1".equals(medicalafterDTO.getMedicaltype())){
+			medicaltype ="住院";
+			sickencontent = medicalafterDTO.getSickencontent();
+		}else if("2".equals(medicalafterDTO.getMedicaltype())){
+			medicaltype ="门诊";
+			if("-1".equals(medicalafterDTO.getDiagnose())){
+				sickencontent = "其他";
+			}else if("0001".equals(medicalafterDTO.getDiagnose())){
+				sickencontent = "尿毒症";
+			}else if("0002".equals(medicalafterDTO.getDiagnose())){
+				sickencontent = "肝、肾脏移植（抗排异治疗）";
+			}else if("0004".equals(medicalafterDTO.getDiagnose())){
+				sickencontent = "肿瘤（仅限于放疗、化疗）";
+			}else if("0005".equals(medicalafterDTO.getDiagnose())){
+				sickencontent = "骨髓移植（抗排异治疗）";
+			}else if("0006".equals(medicalafterDTO.getDiagnose())){
+				sickencontent = "心脏移植（抗排异治疗）";
+			}
+		}
+		String persontype="";
+		if("111".equals(medicalafterDTO.getPersontype())){
+			persontype = "再保障";
+		}else if("100".equals(medicalafterDTO.getPersontype())){
+			persontype = "低保";
+		}else {
+			persontype = "普通居民";
+		}
+		String insuretype="";
+		if("1".equals(medicalafterDTO.getInsuretype())){
+			insuretype = "医保";
+		}else if("2".equals(medicalafterDTO.getInsuretype())){
+			insuretype = "农合";
+		}else{
+			insuretype = "其他";
+		}
+			
+		map.put("MEDICALTYPE", medicaltype);
+		map.put("HOSPITAL", medicalafterDTO.getHospital());
+		map.put("MEMBERNAME", medicalafterDTO.getMembername());
+		map.put("FAMILYNO", medicalafterDTO.getFamilyno());
+		map.put("SSN", medicalafterDTO.getSsn());
+		map.put("PERSONTYPE", persontype);
+		map.put("PAPERID", medicalafterDTO.getPaperid());
+		map.put("SEX", medicalafterDTO.getSex());
+		map.put("ADDRESS", medicalafterDTO.getAddress());
+		map.put("INSURETYPE", insuretype);
+		map.put("SICKENCONTENT", sickencontent);
+		map.put("TIKETNO", medicalafterDTO.getTiketno());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal = Calendar.getInstance();
 		String printtime = sdf.format(cal.getTime());
-/*Calendar cal_begin = Calendar.getInstance();
-		cal_begin.setTime(medicalafterDTO.getBegintime());
-		String begin = sdf.format(cal_begin.getTime());
-		Calendar cal_end = Calendar.getInstance();
-		cal_end.setTime(medicalafterDTO.getEndtime());
-		String end = sdf.format(cal_end.getTime());*/
 		map.put("BEGINTIME", medicalafterDTO.getBegintimeval());
 		map.put("ENDTIME", medicalafterDTO.getEndtimeval());
 		map.put("PRINTTIME", printtime);

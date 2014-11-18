@@ -692,10 +692,8 @@ public class BaseinfoServiceImpl implements BaseinfoService {
 			medicalafterDTO.setTiketno((String) map.get("TIKETNO"));
 			medicalafterDTO.setHospital((String) map.get("HOSPITAL"));
 			medicalafterDTO.setHospitallevel((String) map.get("HOSPITALLEVEL"));
-			medicalafterDTO.setBegintime((Date) map.get("BIGINTIME"));
-			medicalafterDTO.setEndtime((Date) map.get("ENDTIME"));
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String begintime = sdf.format((Date)map.get("BIGINTIME"));
+			String begintime = sdf.format((Date)map.get("BEGINTIME"));
 			String endtime = sdf.format((Date)map.get("ENDTIME"));
 			medicalafterDTO.setBegintimeval(begintime);
 			medicalafterDTO.setEndtimeval(endtime);
